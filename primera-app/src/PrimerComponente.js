@@ -1,16 +1,15 @@
-const PrimerComponente = () => {
-
-    const saludo = 'Hola desde una variable';
-    const obje = {
-        nombre:'fer',
-        apellido:'sosa'
-    }
+import PropTypes from 'prop-types';
+const PrimerComponente = ( {saludo}) => {
 
     return (
     <>
-    <h1>Hola amigos{saludo}</h1>
-    <pre>Adios amigos{JSON.stringify(obje,null,3)} </pre>
+    <h1>{saludo}</h1>
     </>)
 
 }
-export default PrimerComponente
+
+PrimerComponente.propTypes = {
+
+    saludo:PropTypes.string.isRequired
+};
+export default PrimerComponente;
