@@ -1,5 +1,12 @@
-test('Primer test', () => {
+describe('Pruebas de strings', () => {
     
-    console.log('hola mundo');
+    test('Debe se igual el string', () => {
+        
+        const mensaje  = 'Hola mundo';
+        const mensaje2 = 'Hola mundo';
     
-})
+        expect(mensaje).toBe(mensaje2);
+        
+    });
+
+});
