@@ -1,14 +1,21 @@
-import { render } from "@testing-library/react";
+import React from 'react';
+import {shallow, configure} from 'enzyme';
 import PrimerComponente from "../PrimerComponente";
-import '@testing-library/jest-dom/extend-expect';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import '@testing-library/jest-dom';
+import {createSerializer} from 'enzyme-to-json';
 
+expect.addSnapshotSerializer(createSerializer({mode: 'deep'}));
+
+configure({adapter: new Adapter()})
 describe('Pruebas en <PrimerComponente />', () => {
 
-    test('Debe mostrar el mensaje "Hola, Soy Fernando" ', () => {
-        
-        const saludo = 'Hola, soy Fernando';
-        const {getByText} = render(<PrimerComponente saludo={saludo}/>);
-        expect(getByText(saludo)).toBeInTheDocument();
-    })
     
-})
+    test('Debe de mostrar  <PrimerComponente /> correctamente', () => {
+        const saludo = 'Hola, Soy Fernando';
+        const wrapper = shallow(<PrimerComponente saludo={saludo}/>);
+        
+        expect(wrapper).toMatchSnapshot();
+    });
+    
+});

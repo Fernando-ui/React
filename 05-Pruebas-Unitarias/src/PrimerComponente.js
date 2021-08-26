@@ -3,7 +3,7 @@ const PrimerComponente = ({saludo, subtitulo}) => {
 
     return (
     <>
-    <h1>{saludo}</h1>
+    <h1>{saludo}1</h1>
     <h1>{subtitulo}</h1>
     </>)
 

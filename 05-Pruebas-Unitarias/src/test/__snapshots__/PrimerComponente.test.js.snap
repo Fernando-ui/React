@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en <PrimerComponente /> Debe de mostrar  <PrimerComponente /> correctamente 1`] = `
+<Fragment>
+  <h1>
+    Hola, Soy Fernando
+    1
+  </h1>
+  <h1>
+    Soy un subtitulo
+  </h1>
+</Fragment>
+`;
