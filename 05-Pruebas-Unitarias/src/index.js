@@ -8,5 +8,6 @@ import './styles.css'
 const divBot = document.querySelector('#root');
 
 
-// ReactDOM.render(<PrimerComponente saludo='jelou'/>, divBot)
-ReactDOM.render(<CounterApp value={0}/>, divBot);
+ReactDOM.render(<PrimerComponente saludo='Hola, Soy Fernando'/>, divBot)
+// ReactDOM.render(<CounterApp value={0}/>, divBot);
+// ReactDOM.render(<CounterApp value={0}/>, divBot);
