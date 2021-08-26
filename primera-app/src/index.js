@@ -7,3 +7,4 @@ import './styles.css'
 const divBot = document.querySelector('#root');
 
 ReactDOM.render(<PrimerComponente />, divBot)
+console.log('hola');
