@@ -7,4 +7,4 @@ import './styles.css'
 const divBot = document.querySelector('#root');
 
 
-ReactDOM.render(<PrimerComponente saludo='jeloy'/>, divBot)
+ReactDOM.render(<PrimerComponente saludo='jelou'/>, divBot)
