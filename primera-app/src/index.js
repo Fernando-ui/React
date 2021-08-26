@@ -9,4 +9,4 @@ const divBot = document.querySelector('#root');
 
 
 // ReactDOM.render(<PrimerComponente saludo='jelou'/>, divBot)
-ReactDOM.render(<CounterApp value={124}/>, divBot);
+ReactDOM.render(<CounterApp value={0}/>, divBot);

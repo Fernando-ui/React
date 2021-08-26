@@ -1,4 +1,12 @@
 html, body{
 
-    background-color: rgb(86, 107, 194);
+    background-color: rgb(61, 93, 162);
+    padding-left:25%;
+
+}
+button{
+
+    font-size: 23px;
+    border-radius: 14px;
+    
 }
