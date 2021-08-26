@@ -5,7 +5,7 @@ const [ , , p3 ] = personajes;
 console.log( p3 );
 
 
-const retornaArreglo = () =>{
+export const retornaArreglo = () =>{
     return ['ABC', 123];
 }
 
