@@ -4,10 +4,9 @@ exports[`Pruebas en <PrimerComponente /> Debe de mostrar  <PrimerComponente /> c
 <Fragment>
   <h1>
     Hola, Soy Fernando
-    1
   </h1>
-  <h1>
+  <p>
     Soy un subtitulo
-  </h1>
+  </p>
 </Fragment>
 `;
