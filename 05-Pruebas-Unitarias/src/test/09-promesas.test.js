@@ -18,7 +18,7 @@ describe('Promesas', () => {
         const id = 10;
         getHeroeByIdAsync(id).catch(err => {
 
-            expect(err).toBe('No se pudo encontrar el héroe!!');
+            expect(err).toBe('No se pudo encontrar el héroe');
             done();
         })
     });
