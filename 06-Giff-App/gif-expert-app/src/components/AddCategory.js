@@ -15,7 +15,7 @@ export const AddCategory = ({setCategories}) => {
 
         if(inputValue.trim().length > 2){
 
-            setCategories( cats => [ ... cats, inputValue]);
+            setCategories( cats => [ ...cats, inputValue]);
             setInputValue('');
         }
 
@@ -23,11 +23,11 @@ export const AddCategory = ({setCategories}) => {
 
     return (
         <>
-        <form onSubmit = { handleSubmit}>
+        <form onSubmit = {handleSubmit}>
 
             <input 
             type="text"
-            value={ inputValue }
+            value={inputValue}
             onChange = { (e) => {handleInputChange(e)}}
 
             />
