@@ -18,13 +18,14 @@ const GifExpertApp = () => {
         <h2>GifExpertApp</h2>
         <AddCategory setCategories = { setCategories} />
         <hr/>
-        <p>{categories}</p>
+        
         
         <ol>
             {
-                categories.map( ( element )=> (<GifGrid 
-                    key={element}
-                    setCategory ={setCategories}
+                categories.map( ( category )=> (
+                <GifGrid 
+                    key={category}
+                    setCategory ={category}
 
                     />))
             }
