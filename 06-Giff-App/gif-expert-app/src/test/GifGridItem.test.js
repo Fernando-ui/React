@@ -30,7 +30,19 @@ describe('Pruebas en el componente <GifGridItem />', () => {
         const img = wrapper.find('img');
         expect(img.prop('src')).toBe(url);
         expect(img.prop('alt')).toBe(title);
-    })
+        console.log(img.props());        
+    });
+
+    test('Debe de tener animate_fadeIn', () => {
+        
+        const div = wrapper.find('div');
+        let resp = div.prop('className');
+        let [,,clase] = resp.split(' ');
+        const claseAnimacion = 'animate__fadeIn';
+
+        expect(clase).toBe(claseAnimacion);
+    });
+    
     
     
 })
