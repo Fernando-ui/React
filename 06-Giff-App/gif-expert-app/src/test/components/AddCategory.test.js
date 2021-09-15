@@ -30,7 +30,7 @@ describe('Pruebas en <AddCattegory/>', () => {
             }
         });
 
-        expect(wrapper.find('p').text().trim()).toBe(value)
+        expect(wrapper.find('p').text().trim()).toBe(value);
     });
 
     test('No debe de postear la informacion onSubmit', () => {
@@ -44,6 +44,28 @@ describe('Pruebas en <AddCattegory/>', () => {
 
     });
     
+    test('debe de llamar el setCategories y limpiar la caja de texto', () => {
+    
+        const value = '';
+        const input = wrapper.find('input');
+
+        input.simulate('change',{
+
+            target:{
+
+                value
+            }
+        });
+
+        wrapper.find('form').simulate('submit',{
+
+            preventDefault(){   }
+        });
+
+        expect(setCategories).not.toHaveBeenCalled();
+        expect(wrapper.find('p').text().trim()).toBe(value);
+        expect(wrapper.find('input').prop('value')).toBe('');
+    });
     
 
 });
