@@ -8,12 +8,24 @@ describe('Pruebas en el hook useFetchGifs', () => {
         
         const {result} = renderHook( () => useFetchGifs('One Punch') );
         const { data, loading } = result.current;
-
+        
         console.log(data,loading);
-
+        
         expect(data).toEqual([]);
         expect(loading).toBe(true);
-    })
+    });
     
-
-})
+    
+    test('debe de retornar un arreglo de imgs y el loading en false ', async () => {
+        
+        const {result} = renderHook( () => useFetchGifs('One Punch') );
+        const { data, loading } = result.current;
+        
+        console.log(data,loading);
+        
+        expect(data).toEqual([]);
+        expect(loading).toBe(true);
+        
+    });
+    
+});
