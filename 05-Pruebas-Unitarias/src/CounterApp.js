@@ -8,7 +8,7 @@ const CounterApp = ({value = 0}) => {
     
 
     const handleAdd = (e) => {
-        setCounter(counter + 1 );
+        setCounter(counter + 1  );
         
     
     }
