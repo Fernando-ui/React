@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { CounterApp } from './components/01-useState/CounterApp';
 
-import { GifExpertApp } from './GifExpertApp';
-
-import './index.css';
 
 ReactDOM.render(
-  <GifExpertApp />,
+  
+    <CounterApp />,
+  
   document.getElementById('root')
 );
 
