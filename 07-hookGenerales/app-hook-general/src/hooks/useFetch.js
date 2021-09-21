@@ -11,6 +11,7 @@ export const useFetch = ( url ) => {
 
     useEffect(() => {
 
+        setState({data:null, loading:true, error:true});
 
         fetch(url)
             .then(resp => resp.json())
