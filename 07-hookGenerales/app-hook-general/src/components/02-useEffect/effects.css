@@ -1,13 +1,32 @@
 body{
 
     margin-left:25%;
-    margin-right:50%;
+    margin-right:30%;
 }
 input{
 
     margin:15px;
 }
 .boton-Enviar{
+
+    margin-left:50%;
+}
+.footer{
+
+    margin-left:55%;
+    margin-top:7px;
+}
+
+.texto-parrafo{
+
+    margin-left:50%;
+}
+
+.boton-siguiente{
+
+    margin-right:50px;
+}
+.container-Botones{
 
     margin-left:50%;
 }
