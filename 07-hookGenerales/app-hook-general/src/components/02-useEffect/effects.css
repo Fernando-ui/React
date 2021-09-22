@@ -1,7 +1,8 @@
 body{
 
-    margin-left:25%;
-    margin-right:30%;
+    margin-left:15%;
+    margin-top:5%;
+    
 }
 input{
 
@@ -29,4 +30,15 @@ input{
 .container-Botones{
 
     margin-left:50%;
+}
+
+#containerName{
+
+    width:700px;
+}
+
+#botonFocus{
+
+    margin-left:50%;
+
 }
