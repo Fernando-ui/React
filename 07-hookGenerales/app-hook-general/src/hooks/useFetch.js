@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react'
+import  { useEffect, useRef, useState } from 'react'
 
 export const useFetch = ( url ) => {
 
@@ -9,6 +9,19 @@ export const useFetch = ( url ) => {
         error:null
     });
 
+
+    const isMounted = useRef(true);
+    
+    useEffect(() => {
+        
+        
+        return () => {
+            isMounted.current = false;
+            
+        }
+    }, [])
+
+
     useEffect(() => {
 
         setState({data:null, loading:true, error:true});
@@ -17,16 +30,19 @@ export const useFetch = ( url ) => {
             .then(resp => resp.json())
             .then( data => {
 
-                setState({
+                if(isMounted.current){
 
-                    loading:false,
-                    error:null,
-                    data
-                })
-            })
+                    setState({
+    
+                        loading:false,
+                        error:null,
+                        data
+                    });
+
+                };
+            });
     },[url])
 
     return state;
 
 }
-    
