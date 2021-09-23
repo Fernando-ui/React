@@ -17,6 +17,8 @@ export const TodoApp = () => {
 
     const [ todo, dispatch ] = useReducer(todoReducer, initialState);
     console.log(todo);
+    console.log(dispatch);
+    
 
 
     const handleSubmit = (e) => {
@@ -40,9 +42,6 @@ export const TodoApp = () => {
 
     }
     
-    
-    
-
 
     return (
         
@@ -74,11 +73,11 @@ export const TodoApp = () => {
 
                     <form onSubmit={ handleSubmit }>
                         <input 
-                        className="form-control mb-3"
-                        type="text"
-                        name="description"
-                        placeholder="Aprender..."
-                        autoComplete="off"
+                            className="form-control mb-3"
+                            type="text"
+                            name="description"
+                            placeholder="Aprender..."
+                            autoComplete="off"
                         />
 
                         <button 
