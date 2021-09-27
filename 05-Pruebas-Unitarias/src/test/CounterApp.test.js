@@ -6,6 +6,7 @@ describe('Pruebas con el conunter App', () => {
 
     let wrapper = shallow(<CounterApp value={0}/>);
 
+    // para que se reinicie el shallow
     beforeEach(() => {
         wrapper = shallow(<CounterApp value={0}/>);
     })
