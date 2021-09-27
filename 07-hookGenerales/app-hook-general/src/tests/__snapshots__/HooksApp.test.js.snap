@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas con componentesm Hooks Debe de regresar el valor del DOM 1`] = `
+<Fragment>
+  <h1>
+    Hola mundo
+  </h1>
+</Fragment>
+`;
