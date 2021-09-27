@@ -1,13 +1,21 @@
 import React from 'react'
-import {AppRouter } from './AppRouter';
+import { AppRouter } from './AppRouter';
+import { UserContext } from './UserContext';
 
 
 export const MainApp = () => {
+
+    const user = {
+
+        id:1234,
+        name:'fernando',
+        email:'correo.com'
+    }
+
     return (
-    <div>
-        <h1>MainApp Screen</h1>
-        <hr/>
+        <UserContext.Provider value={ user }>
+
         <AppRouter/>
-    </div>
+        </UserContext.Provider>
     )
 }
