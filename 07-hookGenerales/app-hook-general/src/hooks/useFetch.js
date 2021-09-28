@@ -40,7 +40,16 @@ export const useFetch = ( url ) => {
                     });
 
                 };
-            });
+            })
+            .catch(()=>{
+
+                setState({
+                    data:null,
+                    loading:null,
+                    error:'No se pudo generar la info'
+                })
+            })
+            ;
     },[url])
 
     return state;
