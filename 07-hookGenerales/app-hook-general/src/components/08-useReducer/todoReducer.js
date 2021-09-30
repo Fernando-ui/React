@@ -1,5 +1,5 @@
 
-export const todoReducer = ( state, action ) => {
+export const todoReducer = ( state = [], action ) => {
 
     switch (action.type) {
         case 'add':
@@ -37,7 +37,7 @@ export const todoReducer = ( state, action ) => {
 
             
         default:
-            return console.log(state);
+            return state;
     }
 
 };
