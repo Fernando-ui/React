@@ -2,11 +2,6 @@ import React from 'react'
 
 export const TodoListItem = ( {val, i, handleDelete, handleToggle} ) => {
 
-
-
-
-
-
     return (
 
         <>
