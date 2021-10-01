@@ -1,9 +1,9 @@
 import React from 'react'
-import { TodoApp } from './TodoApp'
+// import { TodoApp } from './TodoApp'
 import { TodoListItem } from './TodoListItem'
 
 
-const {  } = TodoApp();
+//// const {  } = TodoApp();
 
 
 export const TodoList = ( {todos, handleDelete, handleToggle} ) => {
