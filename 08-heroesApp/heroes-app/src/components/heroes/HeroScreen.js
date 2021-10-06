@@ -19,7 +19,6 @@ export const HeroScreen = ({history}) =>{
         alter_ego,
         characters,
         first_appearance,
-        id,
         publisher,
         superhero,
     } = hero;
@@ -44,7 +43,7 @@ export const HeroScreen = ({history}) =>{
         <div className="row mt-5">
             <div className="col-4"> 
             <img src={`../assets/heroes/${heroeId}.jpg`}
-                className="img-thumnail"
+                className="img-thumnail  animate__animated animate__fadeInLeft"
                 alt={superhero}
                 style={{borderRadius:25}}
             />
