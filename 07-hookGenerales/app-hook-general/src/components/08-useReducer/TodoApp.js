@@ -64,10 +64,6 @@ export const TodoApp = () => {
     
     }
     
-    
-
-    
-    
     return (
         
         <div>
