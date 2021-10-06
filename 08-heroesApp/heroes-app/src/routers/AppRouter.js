@@ -6,9 +6,7 @@ import {
     
 } from "react-router-dom";
 import { LoginScreen } from "../components/login/LoginScreen";
-import { marvelScreen } from "../components/marvel/marvelScreen";
 import { DashboardRoutes } from "./DashboardRoutes";
-// import { Navbar } from '../components/ui/Navbar';
 
 export const AppRouter = ( ) =>{
 
