@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useHistory } from 'react-router-dom'
 import { AuthContext } from '../../auth/AuthContext';
 import { types } from '../../types/types';
 
@@ -8,6 +8,8 @@ export const Navbar = ( ) => {
 // export const Navbar = ({history}) => {
     
     const {user:{name}, dispatch} = useContext(AuthContext);
+    const history = useHistory();
+    console.log(history);
     
     const handleLogout = () => {
     
@@ -18,7 +20,7 @@ export const Navbar = ( ) => {
         })
         
         // console.log(history);
-        // history.replace('./login')
+        history.replace('./login')
         
     }
     
