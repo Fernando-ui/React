@@ -6,7 +6,8 @@ import { HeroCard } from './HeroCard';
 export const HeroList = ({ publisher }) => {
 
     const heroes = useMemo(() => getHeroesByPublisher( publisher ), [publisher]);
-
+    
+    
     // const heroes = getHeroesByPublisher( publisher );
 
     return (
@@ -17,6 +18,7 @@ export const HeroList = ({ publisher }) => {
                     <div key={hero.id}>
                     <HeroCard key={ hero.id }
                         { ...hero }
+                        
                         />
                     </div>
                 ))
