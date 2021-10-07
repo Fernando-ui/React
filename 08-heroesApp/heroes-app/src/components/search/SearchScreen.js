@@ -48,7 +48,6 @@ export const SearchScreen = ({ history}) => {
                             autoComplete="off"
                             />
                             
-
                             <button 
                             type="submit"
                             className="btn m-1 btn-block btn-outline-primary"
@@ -57,18 +56,28 @@ export const SearchScreen = ({ history}) => {
                                 Search...
                             </button>
                     </form>
-
                 </div>
-
                 <div className="col-7">
                     <h4>Result</h4>
                     <hr/>
-                    <div className="alert alert-info">
-                        Search a hero
-                    </div>
+                    { 
+                    (q === '') 
+                        && 
+                        <div className="alert alert-info">
+                            Search a hero
+                        </div> 
+                    }
+
+                    { 
+                    (q !== '' && heroesFiltered.length === 0 ) 
+                        && 
+                        <div className="alert alert-danger">
+                            There is no a hero with { q }
+                        </div> 
+                    }
+
                     {
                         heroesFiltered.map( (hero) => (
-
                             <HeroCard
                             key={hero.id}
 
