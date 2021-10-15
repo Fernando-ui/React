@@ -4,11 +4,20 @@
 
     background-color:transparent;
     border:none;
+    color:white;
+    cursor:pointer;
+    font-size:12px;
+    padding:7px 10px 7px 10px ;
+
+    transition:color .3s ease;
 
     &:focus{
         outline:none;
     }
-   
+    &:hover{
+
+        color:darken(white, 10%);
+    }
 }
 
 .btn-primary{
@@ -40,6 +49,8 @@
     background-color: $google-blue;
     border-radius: 2px;
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+    // margin-left:10%;
+    // margin-right:10%;
 
     transition: box-shadow .3s ease;
 
@@ -60,15 +71,16 @@
         height: 18px;
     }
     .btn-text {
-        float: right;
+        // float: inline-start;
         margin: 11px 40px 0 0;
         color: $white;
         font-size: 14px;
         letter-spacing: 0.2px;
-
-        b{
-            margin-right:95px;
-        }
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-left:40px;
+        
     }
     &:hover {
         box-shadow: 0 0 6px $google-blue;
