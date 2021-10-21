@@ -7,7 +7,6 @@ const initialState = {
 
 export const uiReducer = (state = initialState, action) => {
     switch (action.type) {
-
         case types.uiSetError:
         return{
             ...state,
@@ -23,6 +22,5 @@ export const uiReducer = (state = initialState, action) => {
         default:
             return state;
     }
-
 }
 

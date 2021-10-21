@@ -13,7 +13,6 @@ export const RegistrerScreen = () => {
     const {msgError} = useSelector( state => state.ui );
     console.log( msgError, 'El error')
 
-
     const [formValues, handleInputChange] = useForm({
 
         name:'ferna',
@@ -26,14 +25,11 @@ export const RegistrerScreen = () => {
 
     const handleRegister = (e) => {
         e.preventDefault();
-        
         if( isFormValid()){
             dispatch(startRegisterWithEmailPasswordName(email,password,name));
             console.log('algo');
                         
         }
-        
-    
     }
 
     const isFormValid = () => {
