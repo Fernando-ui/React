@@ -1,5 +1,5 @@
 import { types } from '../types/types';
-import { getAuth, signInWithPopup, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithPopup, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import {firebaseApp, googleProvider} from '../firebase/firebase-config';
 import { uifinishLoading, uistartLoading } from './ui';
 
@@ -60,3 +60,17 @@ export const login = (uid, displayName) =>({
             displayName
         }
 });
+
+export const startLogout = () => {
+    return async( dispatch ) => {
+        const auth = getAuth(firebaseApp);
+        await signOut(auth);
+
+        dispatch(logout());
+    }
+}
+
+export const logout = () =>( {
+    type:types.logout
+})
+
