@@ -11,6 +11,13 @@ export const removeError = () => ({
     payload:null,
 });
 
+export const uistartLoading = () => ({
+    type:types.uiStartLoading
+})
+export const uifinishLoading = () =>({
+    type:types.uiFinishLoading 
+})
+
 
 
 

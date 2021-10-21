@@ -1,18 +1,23 @@
 import { types } from '../types/types';
 import { getAuth, signInWithPopup, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from 'firebase/auth';
 import {firebaseApp, googleProvider} from '../firebase/firebase-config';
-import { uiFinishLoading, uiStartLoading } from './button';
+import { uifinishLoading, uistartLoading } from './ui';
+
  
 export const startLoginEmailPassword = (email, password) =>{
     return (dispatch) =>{
         // signIn email passwors
-        dispatch(uiStartLoading());
+        dispatch(uistartLoading());
         const auth = getAuth(firebaseApp);
         signInWithEmailAndPassword(auth,email,password).then(async({user})=>{
             dispatch(login(user.uid,user.displayName));
-            dispatch(uiFinishLoading());
+            dispatch(uifinishLoading());
             console.log(user);
-        }).catch(console.error);
+        }).catch((err)=> {
+            console.error(err)
+            dispatch(uifinishLoading());
+        
+        });
     };
 };
 
