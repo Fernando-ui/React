@@ -1,5 +1,5 @@
 import { types } from '../types/types';
-import { getAuth, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithPopup, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import {firebaseApp, googleProvider} from '../firebase/firebase-config';
  
 export const startLoginEmailPassword = (email, password) =>{
@@ -10,24 +10,22 @@ export const startLoginEmailPassword = (email, password) =>{
     }
 }
 
-export const startRegisterWithEmailPasswordName = (email, password, name) =>{
+export const startRegisterWithEmailPasswordName =  (email, password, name) =>{
 
-    const auth = getAuth();
-
-    // return ( dispatch ) => {
-
-    //     firebase.auth().createUserWithEmailAndPassword(auth,email, password )
-    //     .then( async({user}) =>{
-    //         // dispatch(login(user.uid, user.displayName))
-    //     await user.updateProfile({displayName: name})
-            
-            
-    //     })
-    // }
+    return ( dispatch ) => {
+        const auth = getAuth(firebaseApp);
+        createUserWithEmailAndPassword(auth,email,password )
+            .then( async ({user}) => {
+                await updateProfile(user,{displayName:name})
+                dispatch(
+                    login(user.uid, user.displayName)
+                )
+                
+            })
+            .catch((err)=> console.error(err));
+    }
 
 }
-
-
 
 export const startGoogleLogin = () =>{
     return (dispatch) =>{
@@ -41,13 +39,13 @@ export const startGoogleLogin = () =>{
             });
     }
 }
- 
-export const login = (uid, displayName) =>(
-    {
+
+
+export const login = (uid, displayName) =>({
+
         type:types.login,
         payload: {
             uid,
             displayName
         }
-    }
-)
+});
