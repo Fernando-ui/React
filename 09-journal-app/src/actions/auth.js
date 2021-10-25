@@ -13,7 +13,7 @@ export const startLoginEmailPassword = (email, password) =>{
         signInWithEmailAndPassword(auth,email,password).then(async({user})=>{
             dispatch(login(user.uid,user.displayName));
             dispatch(uifinishLoading());
-            console.log(user);
+            console.log(user,'Usuarui');
         }).catch((err)=> {
             console.error(err)
             dispatch(uifinishLoading());
