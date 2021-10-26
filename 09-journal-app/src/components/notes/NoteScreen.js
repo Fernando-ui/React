@@ -7,7 +7,7 @@ export const NoteScreen = () => {
     const { active:note } = useSelector(state => state.notes);
     const [formValues, handleInputChange, reset] = useForm( note );
     const { body, title } = formValues;
-
+    
     const activeId = useRef(note.id)
     useEffect(() => {
         if(note.id !== note.current){
@@ -15,7 +15,7 @@ export const NoteScreen = () => {
             activeId.current = note.id;
         }
 
-    }, [note, reset])
+    }, [note, reset]);
 
     return (
       <div className="notes__main-content">
@@ -26,14 +26,16 @@ export const NoteScreen = () => {
             type="text"
             placeholder="Awesome day"
             className="notes__title-input"
-            value={title}
+            name="title"
+            value={ title }
             onChange={handleInputChange}
             autoComplete="off"
           />
           <textarea
             placeholder="Whay's on yout mind"
             className="notes__textarea"
-            value={body}
+            name="body"
+            value={ body }
             onChange={handleInputChange}
           ></textarea>
           {

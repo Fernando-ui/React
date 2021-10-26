@@ -2,14 +2,12 @@ import React from 'react'
 import moment from 'moment'
 import { activeNote } from '../../actions/notes';
 import { useDispatch } from 'react-redux';
-import { loadNotes } from '../../helpers/loadNotes';
 
 export const JournalEntry = ({id, date, title, body, url}) => {
     const noteDate = moment(date);
     const dispatch = useDispatch();
     
     const handleEntryClick = async() => {
-        const note = await loadNotes(id);
         dispatch( activeNote(id,{
             date,
             title,
