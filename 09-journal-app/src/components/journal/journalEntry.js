@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useSelector } from 'react'
 
 export const JournalEntry = () => {
+    // const notes = useSelector(state => state.notes)
     return (
         <>
             <div className="journal__entry pointer">

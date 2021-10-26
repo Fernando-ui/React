@@ -1,6 +1,7 @@
 import {firebaseApp} from '../firebase/firebase-config';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, collection } from 'firebase/firestore';
 import { types } from '../types/types';
+import { loadNotes } from '../helpers/loadNotes';
 
 
 
@@ -16,7 +17,7 @@ export const startNewNote = () => {
             body:'',
             date: new Date().getTime(),
         }
-        let docuRef = doc(firestore,`usuarios/${uid}`);
+        const docuRef = doc(collection(firestore,`usuarios/${uid}/notes`));
         await setDoc(docuRef,newNote);
         dispatch(activeNote(docuRef.parent.id,newNote));
     }
@@ -29,6 +30,14 @@ export const activeNote = (id, note) => ({
         ...note
     }
 });
+
+export const startLoadingNotes = ( uid ) => {
+    return async( dispatch ) => {
+        const notes = await loadNotes( uid );
+        dispatch( setNotes( notes) )
+    }
+}
+
 
 
 export const setNotes = ( notes ) => ({
