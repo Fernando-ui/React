@@ -15,7 +15,7 @@ export const JournalEntry = ({id, date, title, body, url}) => {
             url
 
             })
-            )
+            );
         
     }
     

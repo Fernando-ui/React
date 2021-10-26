@@ -3,9 +3,9 @@ import { firebaseApp } from '../firebase/firebase-config'
 
 const firestore = getFirestore( firebaseApp);
 
-export const loadNotes = async() => {
+export const loadNotes = async(uid) => {
 
-    const querySnapshot = await getDocs(collection(firestore,`usuarios/`));
+    const querySnapshot = await getDocs(collection(firestore,`${uid}/journal/notes`));
     const notes = [];
     querySnapshot.forEach( (doc ) =>{
         notes.push({
