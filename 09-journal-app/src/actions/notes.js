@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 import {firebaseApp} from '../firebase/firebase-config';
-import { getFirestore, doc, setDoc, collection, updateDoc} from 'firebase/firestore';
+import { getFirestore, doc, setDoc, collection, updateDoc, deleteDoc} from 'firebase/firestore';
 import { types } from '../types/types';
 import { loadNotes } from '../helpers/loadNotes';
 import { fileUpload } from '../helpers/fileUpload';
@@ -92,4 +92,18 @@ export const startUploading = (file) => {
     }
 }
 
+export const startDeleting = ( id ) => {
+    return async(dispatch, getState )=>{
+        const firestore = getFirestore( firebaseApp );
+        const uid = getState().auth.uid;
+        const docuRef = doc(firestore, `${ uid }/journal/notes/${ id } `);
+        await deleteDoc(docuRef);
+        dispatch( deleteNote( id ) );       ; 
+    }
+}
+
+export const deleteNote = ( id ) =>( {
+    type:types.notesDelete,
+    payload:id
+})
 
