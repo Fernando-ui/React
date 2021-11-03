@@ -5,7 +5,6 @@ import { JournalEntry } from './journalEntry';
 export const JournalEntries = () => {
 
     const {notes} = useSelector(state => state.notes) 
-    console.log(notes,'Tenemos las notras');
     
     return (
         <>

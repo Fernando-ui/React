@@ -45,6 +45,8 @@ export const startSaveNote = ( note ) => {
     return async( dispatch, getState) =>{
         if( !note.url ){
             delete note.url;
+            console.log(note.url);
+            
         }
         const firestore = getFirestore( firebaseApp );
         const { uid } = getState().auth;
@@ -53,7 +55,6 @@ export const startSaveNote = ( note ) => {
         const docuRef = doc(firestore, `${uid}/journal/notes/${note.id}`);
         await updateDoc(docuRef,noteToFirestore);
         // forma de actualizar
-        // dispatch( startLoadingNotes( uid ) );
         dispatch( refreshNote( note.id, noteToFirestore ));
         Swal.fire('Saved',note.title, 'success')
     }
@@ -72,9 +73,22 @@ export const refreshNote = ( id, note) => ({
 export const startUploading = (file) => {
     return async(dispatch, getState)=>{
         const { active:activeNotes } = getState().notes;
-        const fileUrl = await fileUpload( file );
-        console.log(fileUrl);
+        Swal.fire({
+            title: 'Uploading...',
+            text: 'Please wait...',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            willOpen: () => {
+                Swal.showLoading();
+            }
+        });
         
+        const fileUrl = await fileUpload( file );    
+            
+        activeNotes.url = fileUrl;        
+        dispatch(startSaveNote( activeNotes));
+
+        Swal.close();
     }
 }
 

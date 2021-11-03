@@ -6,7 +6,6 @@ import { Sidebar } from './Sidebar';
 
 export const JournalScreen = () => {
     const { active } = useSelector(state => state.notes);
-    console.log(active,'Tenemos el state de jorunal');
 
     return (
         <div className="journal__main-content">
