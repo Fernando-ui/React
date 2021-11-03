@@ -3,6 +3,7 @@ import {firebaseApp} from '../firebase/firebase-config';
 import { getFirestore, doc, setDoc, collection, updateDoc} from 'firebase/firestore';
 import { types } from '../types/types';
 import { loadNotes } from '../helpers/loadNotes';
+import { fileUpload } from '../helpers/fileUpload';
 
 
 
@@ -10,7 +11,6 @@ export const startNewNote = () => {
     return async( dispatch, getState ) => {
         const firestore = getFirestore(firebaseApp);
         const uid = getState().auth.uid;
-        console.log(uid,'El uid');
         
         const newNote = {
             title:'',
@@ -22,7 +22,6 @@ export const startNewNote = () => {
         dispatch(activeNote(docuRef.parent.id,newNote));
     }
 }
-
 export const activeNote = (id, note) => ({
     type:types.notesActive,
     payload:{
@@ -30,7 +29,6 @@ export const activeNote = (id, note) => ({
         ...note
     }
 });
-
 export const startLoadingNotes = ( uid ) => {
     return async( dispatch ) => {
         const notes = await loadNotes( uid );
@@ -45,9 +43,7 @@ export const setNotes = ( notes ) => ({
 
 export const startSaveNote = ( note ) => {
     return async( dispatch, getState) =>{
-
         if( !note.url ){
-
             delete note.url;
         }
         const firestore = getFirestore( firebaseApp );
@@ -72,5 +68,14 @@ export const refreshNote = ( id, note) => ({
             ...note
         }
     }
-})
+});
+export const startUploading = (file) => {
+    return async(dispatch, getState)=>{
+        const { active:activeNotes } = getState().notes;
+        const fileUrl = await fileUpload( file );
+        console.log(fileUrl);
+        
+    }
+}
+
 
