@@ -1,18 +1,33 @@
 // * Configuracon redux-mock-store
 import configureStore from 'redux-mock-store'; //ES6 modules
 import thunk from 'redux-thunk'; // 
-import { startLoadingNotes, startNewNote } from '../../actions/notes';
+import { startLoadingNotes, startNewNote, startUploading } from '../../actions/notes';
+import { fileUpload } from '../../helpers/fileUpload';
 import { types } from '../../types/types';
+
+jest.mock('../../helpers/fileUpload', ()=>({
+    
+    fileUpload:jest.fn( ()=>{
+        // return 'https://hola-mundo.com/cosa.jpg'
+        return Promise.resolve('https://hola-mundo.com/cosa.jpg');
+    })
+}));
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 const initState = {
     auth:{
         uid:'TESTING', 
+    },
+    notes:{
+        id:'jfkwefwionvklkds',
+        title:'Hola',
+        body:'Mundo'
     }
 }
 
-let store = mockStore(initState)
+let store = mockStore(initState);
+
 
 // *Iniciamos las pruebas generales
 
@@ -76,5 +91,13 @@ describe('Pruebas con las acciones de notes', () => {
         // const docRef = await db.doc(`/TESTING/journal/notes/${ note.id }`).get() 
         // expect( docRef.data().title).toBe()
     });
+    test('startUploading debe actualizar el url del entry', async() => {
+        const file = new File([],'fOTO.jpg');
+        await store.dispatch( startUploading( file ));
+
+        // const docRef = await db.doc('/TESTIG/journal/notes/09283743928kek').get() ;
+        expect(docRef.data().url).toBe('https://hola-mundo.com/cosa.jpg')
+    })
     
+
 })

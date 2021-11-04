@@ -17,12 +17,20 @@ export const startNewNote = () => {
             body:'',
             date: new Date().getTime(),
         }
-        const docuRef = doc(collection(firestore,`${uid}/journal/notes`));        
-        await setDoc(docuRef,newNote);
-        dispatch(activeNote(docuRef.parent.id,newNote));
-        dispatch(addNewNote( doc.id, newNote ) );
-    }
+        try {
+            const docuRef = doc(collection(firestore,`${uid}/journal/notes`));     
+
+            await setDoc(docuRef,newNote);
+            
+            dispatch(activeNote(docuRef.parent.id,newNote));
+            dispatch(addNewNote( doc.id, newNote ) );            
+        } catch (error) {
+            console.log(error);
+            
+        };
+    };
 };
+
 export const activeNote = (id, note) => ({
     type:types.notesActive,
     payload:{
