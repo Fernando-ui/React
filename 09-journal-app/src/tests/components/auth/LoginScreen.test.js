@@ -8,7 +8,7 @@ import { mount } from "enzyme";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import { startGoogleLogin } from "../../../actions/auth";
+import { startGoogleLogin, startLoginEmailPassword } from "../../../actions/auth";
 
 jest.mock('../../../actions/auth', () => ({
   startGoogleLogin:jest.fn(),
