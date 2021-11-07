@@ -18,9 +18,6 @@ export const TodoApp = () => {
 
     const [ todo, dispatch ] = useReducer(todoReducer, [], init);
     
-    
-    
-
     useEffect(() => {
         
         localStorage.setItem('todos',JSON.stringify(todo))
