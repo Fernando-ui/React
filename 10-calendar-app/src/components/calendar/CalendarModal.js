@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import DateTimePicker from 'react-datetime-picker';
+import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
+import Swal from 'sweetalert2';
 
 const customStyles = {
   content: {
@@ -15,11 +16,10 @@ const customStyles = {
 };
 // * Hacemos referencia a nuestro componente div inicial
 Modal.setAppElement("#root");
-const now = moment().minutes(0).seconds(0).add(1,'hours');
+const now = moment().minutes(0).seconds(0).add(1, "hours");
 
 // ? Anadiendo una hora mas a la hora actual
-const nowPlus1 = now.clone().add(1, 'hours');
-
+const nowPlus1 = now.clone().add(1, "hours");
 
 export const CalendarModal = () => {
   const [dateStart, setdateStart] = useState(now.toDate());
@@ -30,38 +30,42 @@ export const CalendarModal = () => {
     setdateStart(e);
     setFormValues({
       ...formValues,
-      start:e
-    })
-    console.log(e);
+      start: e,
+    });
   };
   const handleEndDateChange = (e) => {
     setDateEnd(e);
-    console.log(e);
     setFormValues({
       ...formValues,
-      end:e
-    })
+      end: e,
+    });
   };
   const [formValues, setFormValues] = useState({
-    title:'Evento',
-    notes:'',
-    start:now.toDate(),
-    end:nowPlus1.toDate(),
+    title: "Evento",
+    notes: "",
+    start: now.toDate(),
+    end: nowPlus1.toDate(),
   });
 
-  const { notes, title } = formValues;
+  const { notes, title, start, end } = formValues;
 
   const handleInputChange = ({ target }) => {
     setFormValues({
       ...formValues,
-      [target.name]: target.value
-
-    })
+      [target.name]: target.value,
+    });
   };
   const handleSubmitForm = (e) => {
-      e.preventDefault();
-      console.log(formValues);
-  }
+    e.preventDefault();
+    // ? Convirtiendo en formato moment la fecha inicio
+    const momentStart = moment(start);
+    // ? Convirtiendo en fomato moment la fecha final
+    const momentEnd = moment( end );
+    if( momentStart.isSameOrAfter( momentEnd)){
+      Swal.fire('Error', 'La fecha final tiene que ser mayor a la fecha de inicio','error')
+      return;
+    }
+  };
 
   return (
     <>
@@ -77,10 +81,7 @@ export const CalendarModal = () => {
       >
         <h1> Nuevo evento </h1>
         <hr />
-        <form 
-        className="container"
-        onSubmit = { handleSubmitForm }
-        >
+        <form className="container" onSubmit={handleSubmitForm}>
           <div className="form-group">
             <label>Fecha y hora inicio</label>
             <DateTimePicker
@@ -104,13 +105,14 @@ export const CalendarModal = () => {
           <hr />
           <div className="form-group">
             <label>Titulo y notas</label>
-            <input type="text" 
-            className="fotm-control"
-            placehoolder="Titulo del evento"
-            name="title"
-            autoComplete="off"
-            value={ title }
-            onChange ={ handleInputChange }
+            <input
+              type="text"
+              className="fotm-control"
+              placehoolder="Titulo del evento"
+              name="title"
+              autoComplete="off"
+              value={title}
+              onChange={handleInputChange}
             />
             <small id="emailHelp" className="form-text text-muted">
               Una descripción corta
@@ -124,8 +126,8 @@ export const CalendarModal = () => {
               placeholder="Notas"
               rows="5"
               name="notes"
-              value={ notes }
-              onChange = { handleInputChange }
+              value={notes}
+              onChange={handleInputChange}
             ></textarea>
             <small id="emailHelp" className="form-text text-muted">
               Información adicional
