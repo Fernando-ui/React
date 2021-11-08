@@ -22,26 +22,46 @@ const nowPlus1 = now.clone().add(1, 'hours');
 
 
 export const CalendarModal = () => {
-  const [dateStart, setdateStart] = useState( now.toDate() );
-  console.log(dateStart);
-  
+  const [dateStart, setdateStart] = useState(now.toDate());
   const [dateEnd, setDateEnd] = useState(nowPlus1.toDate());
 
-  const closeModal = () => {
-
-  };
-
+  const closeModal = () => {};
   const handleStartDateChange = (e) => {
-    setdateStart( e )
+    setdateStart(e);
+    setFormValues({
+      ...formValues,
+      start:e
+    })
     console.log(e);
- }
- const handleEndDateChange = ( e ) => {
-  setDateEnd( e );
-  console.log( e );
-  
- }
- 
- 
+  };
+  const handleEndDateChange = (e) => {
+    setDateEnd(e);
+    console.log(e);
+    setFormValues({
+      ...formValues,
+      end:e
+    })
+  };
+  const [formValues, setFormValues] = useState({
+    title:'Evento',
+    notes:'',
+    start:now.toDate(),
+    end:nowPlus1.toDate(),
+  });
+
+  const { notes, title } = formValues;
+
+  const handleInputChange = ({ target }) => {
+    setFormValues({
+      ...formValues,
+      [target.name]: target.value
+
+    })
+  };
+  const handleSubmitForm = (e) => {
+      e.preventDefault();
+      console.log(formValues);
+  }
 
   return (
     <>
@@ -57,7 +77,10 @@ export const CalendarModal = () => {
       >
         <h1> Nuevo evento </h1>
         <hr />
-        <form className="container">
+        <form 
+        className="container"
+        onSubmit = { handleSubmitForm }
+        >
           <div className="form-group">
             <label>Fecha y hora inicio</label>
             <DateTimePicker
@@ -69,19 +92,26 @@ export const CalendarModal = () => {
 
           <div className="form-group">
             <label>Fecha y hora fin</label>
-             <DateTimePicker
+            <DateTimePicker
               onChange={handleEndDateChange}
               value={dateEnd}
               className="form-control"
               //? Podemos colocar fechas minimas a escoger
-              minDate={ dateStart }
+              minDate={dateStart}
             />
           </div>
 
           <hr />
           <div className="form-group">
             <label>Titulo y notas</label>
-           
+            <input type="text" 
+            className="fotm-control"
+            placehoolder="Titulo del evento"
+            name="title"
+            autoComplete="off"
+            value={ title }
+            onChange ={ handleInputChange }
+            />
             <small id="emailHelp" className="form-text text-muted">
               Una descripción corta
             </small>
@@ -94,6 +124,8 @@ export const CalendarModal = () => {
               placeholder="Notas"
               rows="5"
               name="notes"
+              value={ notes }
+              onChange = { handleInputChange }
             ></textarea>
             <small id="emailHelp" className="form-text text-muted">
               Información adicional
