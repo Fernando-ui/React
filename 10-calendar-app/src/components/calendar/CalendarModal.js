@@ -24,8 +24,11 @@ const nowPlus1 = now.clone().add(1, "hours");
 export const CalendarModal = () => {
   const [dateStart, setdateStart] = useState(now.toDate());
   const [dateEnd, setDateEnd] = useState(nowPlus1.toDate());
+  const [titleValid, setTitleValid] = useState(true);
 
-  const closeModal = () => {};
+  const closeModal = () => {
+    // TODO Cerrar el modal
+  };
   const handleStartDateChange = (e) => {
     setdateStart(e);
     setFormValues({
@@ -65,6 +68,12 @@ export const CalendarModal = () => {
       Swal.fire('Error', 'La fecha final tiene que ser mayor a la fecha de inicio','error')
       return;
     }
+    if(title.trim().length < 2 ){
+      return setTitleValid(false);
+    }
+    // TODO Realizar grabacion 
+    setTitleValid(true);
+    closeModal();
   };
 
   return (
@@ -107,7 +116,7 @@ export const CalendarModal = () => {
             <label>Titulo y notas</label>
             <input
               type="text"
-              className="fotm-control"
+              className= {`form-control ${!titleValid && 'is-invalid'}`}
               placehoolder="Titulo del evento"
               name="title"
               autoComplete="off"
