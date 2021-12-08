@@ -5,7 +5,7 @@ import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
 import Swal from "sweetalert2";
 import { uiCloseModal } from "../../actions/ui";
-import { eventAddNew, eventClearActiveEvent } from "../../actions/events";
+import { eventAddNew, eventClearActiveEvent, eventUpdated } from "../../actions/events";
 
 const customStyles = {
   content: {
@@ -66,6 +66,8 @@ export const CalendarModal = () => {
   useEffect(() => {
     if(activeEvent){
       setFormValues(activeEvent);
+    }else{
+      setFormValues( initEvent );
     }
     
   }, [activeEvent, setFormValues]);
@@ -96,15 +98,20 @@ export const CalendarModal = () => {
     if (title.trim().length < 2) {
       return setTitleValid(false);
     }
-    // TODO Realizar grabacion
-    dispatch(eventAddNew({
-      ...formValues,
-      id:new Date().getTime(),
-      user:{
-        _id:'123',
-        nombre:'Fernando'
-      }
-    }));
+
+    if(activeEvent){
+      dispatch( eventUpdated( formValues ));
+    }else{
+      dispatch(eventAddNew({
+        ...formValues,
+        id:new Date().getTime(),
+        user:{
+          _id:'123',
+          nombre:'Fernando'
+        }
+      }));
+    }
+
     setTitleValid(true);
     closeModal();
   };
@@ -121,7 +128,7 @@ export const CalendarModal = () => {
         className="modal"
         overlayClassName="modal-fondo"
       >
-        <h1> Nuevo evento </h1>
+        <h1> { ( activeEvent ) ? 'Editar evento': 'Nuevo evento' } </h1>
         <hr />
         <form className="container" onSubmit={handleSubmitForm}>
           <div className="form-group">

@@ -69,3 +69,11 @@ html, body {
     position:fixed;
     right:25px;
 }
+
+.fab-danger{
+    
+    position:fixed;
+    left:25px;
+    bottom:25px;
+    padding:10px;
+}
