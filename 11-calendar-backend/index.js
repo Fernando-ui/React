@@ -6,14 +6,13 @@ const express = require('express');
 //* Crear servidor express
 const app = express();
 
-// * Rutas 
-// app.get('/',(req, resp)=>{
+// * Lectura y parseo del body
+app.use(express.json());
 
-//     console.log('Se requiere /');
-//     resp.json({
-//         ok:true
-//     })
-// })
+
+// * Rutas generales
+app.use('/api/auth',require('./routes/auth'));
+
 
 // * Directorio Publico
 app.use(express.static('public'))
