@@ -1,27 +1,39 @@
 const express = require("express");
+const { validationResult } = require('express-validator');
 
 const crearUsuario = (req, res = express.response) => {
     const {name, email, password} = req.body;
 
-    if(name.length < 5){
-        return res.status(400).json({
-            ok:false,
-            msg:'El nombre debe de ser mayor a 5'
-        });
+    const errors = validationResult( req );
+    if( !errors.isEmpty() ){
+      return res.status(400).json({
+        ok:false,
+        errors:errors.mapped()
+      })
     }
 
-  res.json({
+  res.status(201).json({
     ok: true,
     creando:'Usuario',
     name,
     email,
-    contrasenia,
+    password,
   });
 };
 
 const loginUsuario = (req, res = express.response) => {
+  
     const { email, password } = req.body;
-  res.json({
+    const errors = validationResult( req );
+
+    if(!errors.isEmpty()){
+      return res.status(400).json({
+        ok:false,
+        errors:errors.mapped()
+      })
+    }
+
+  res.status(201).json({
     ok: true,
     msg: "Registro",
     email,
@@ -36,7 +48,7 @@ const revalidarToken = (req, res) => {
   });
 };
 
-module.exports = {
+module.exports = { 
   crearUsuario,
   loginUsuario,
   revalidarToken,
