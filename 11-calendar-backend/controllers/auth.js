@@ -22,7 +22,7 @@ const crearUsuario = (req, res = express.response) => {
 };
 
 const loginUsuario = (req, res = express.response) => {
-  
+
     const { email, password } = req.body;
     const errors = validationResult( req );
 
