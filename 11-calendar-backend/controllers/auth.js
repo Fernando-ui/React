@@ -1,17 +1,28 @@
 const express = require("express");
 const { validationResult } = require('express-validator');
+const Usuario = require('../models/Usuario');
 
-const crearUsuario = (req, res = express.response) => {
-    const {name, email, password} = req.body;
+const crearUsuario = async(req, res = express.response) => {
+    // const {name, email, password} = req.body;
+    const usuario = new Usuario( req.body);
+    try {
+      await usuario.save();
+      
+      res.status(201).json({
+        ok: true,
+        creando:'Usuario',
+        
+      });
+    } catch (error) {
+      res.status(500).json({
+        ok:false,
+        creando:'Usuario',
+        msg:'Por favor hable con el administrador'
+      })
+      console.log(error,'Tenemos un error');
+      throw new Error('No se ha podido guardar en la base de datos')
+    }
 
-   
-  res.status(201).json({
-    ok: true,
-    creando:'Usuario',
-    name,
-    email,
-    password,
-  });
 };
 
 const loginUsuario = (req, res = express.response) => {
