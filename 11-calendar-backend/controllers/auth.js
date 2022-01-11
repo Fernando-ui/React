@@ -38,15 +38,41 @@ const crearUsuario = async (req, res = express.response) => {
   }
 };
 
-const loginUsuario = (req, res = express.response) => {
+const loginUsuario = async (req, res = express.response) => {
   const { email, password } = req.body;
+  try {
+    const usuario = await Usuario.findOne({ email });
+    if( !usuario ){
+      return res.status(400).json({
+        ok:false,
+        msg:'El usuario no existe con ese email',
+      })
+    }
+    // Confirmar los passwords
+    const validPassword = bcryptjs.compareSync( password, usuario.password);
+    
+    if( !validPassword ){
+      return res.status(400).json({
+        ok:false,
+        msg:'',
+      });
+    };
 
-  res.status(201).json({
-    ok: true,
-    msg: "Registro",
-    email,
-    password,
-  });
+    // *Generar nuestro JWT
+    res.json({
+      ok:true,
+      uid: usuario.id,
+      name: usuario.name,
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok:false,
+      msg:'Por favor hable con el administrador'
+    })
+     
+  }
+  
 };
 
 const revalidarToken = (req, res) => {
