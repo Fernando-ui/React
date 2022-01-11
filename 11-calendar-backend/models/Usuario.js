@@ -1,6 +1,5 @@
 const { Schema, model} = require('mongoose');
 
-
 const UsuarioSchema = Schema ({
     name:{
         type:String,
@@ -16,4 +15,4 @@ const UsuarioSchema = Schema ({
         require:true,
     }
 }); 
-module.exports = model('Usuario', UsuarioSchema)
+module.exports = model('Usuario', UsuarioSchema); 
