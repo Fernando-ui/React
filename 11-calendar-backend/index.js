@@ -16,10 +16,9 @@ app.use(cors());
 // * Lectura y parseo del body
 app.use(express.json());
 
-
 // * Rutas generales
 app.use('/api/auth',require('./routes/auth'));
-
+app.use('/api/events',require('./routes/events'));
 
 // * Directorio Publico
 app.use(express.static('public'))

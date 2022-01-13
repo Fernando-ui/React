@@ -22,7 +22,6 @@ const validarJWT = (req = request, res = response, next) => {
         req.uid = uid;
         req.name = name;
         
-
     } catch (error) {
         res.status(401).json({
             ok:false,
@@ -30,7 +29,6 @@ const validarJWT = (req = request, res = response, next) => {
         });
     }
     next();
-    
 }
 
 module.exports = {
