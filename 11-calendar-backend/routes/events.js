@@ -21,7 +21,7 @@ router.post('/',
         validarCampos
     ],
     crearEvento
-);
+); 
 
 // * Actualizando los eventos 
 router.put('/:id', actualizarEvento);

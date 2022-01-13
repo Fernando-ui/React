@@ -1,23 +1,42 @@
 const { response, request} = require('express');
+const Evento = require('../models/Evento');
+
 // *  Mandar mensaje diciendo true y msg el evento que se hizo, Hacer las del CRUD
 
-const crearEvento = (req, res = response) => {
+const crearEvento = async (req, res = response) => {
 
-    console.log(req.body);
-    
+    const evento = new Evento( req.body);
+    try {
+        evento.user = req.uid;
+        const eventoGuardado = await evento.save();
+        res.json({
+            ok:true,
+            evento:eventoGuardado
+        })
+        
+    } catch (error) {
 
-
-    
+        console.log(error);
+        res.status(500).json({
+            ok:false,
+            msg:'Hable con el administrador'
+        })
+        
+    }
     res.json({
         ok:true,
         msg:'Llamada a crearEvento'
     })
 }
 
-const getEventos = (req, res = response) => {
+const getEventos = async(req, res = response) => {
+    const eventos = await Evento.find()
+                    .populate('user','nameb');
+    
+    
     res.json({
         ok:true,
-        msg:'Llamada a getEventos'
+        eventos
     })
 }
 const actualizarEvento = (req, res = response) => {
