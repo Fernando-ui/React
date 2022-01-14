@@ -27,5 +27,5 @@ app.use(express.static('public'))
 app.listen(process.env.PORT, ()=>{
         console.log('Servidor arriba en puerto 4000');
     
-})  
+});  
  
